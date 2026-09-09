@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#18131c">
+<meta name="theme-color" content="#17131f">
 <meta name="description" content="Маленькая вселенная тёплых слов.">
 <meta name="robots" content="noindex, nofollow">
 <title>Маленькая вселенная</title>
@@ -13,194 +13,225 @@
 
   :root {
     color-scheme: dark;
-    --bg: #18131c;
-    --ink: #f8e8e4;
-    --muted: #c6aab8;
-    --accent: #efb4cc;
-    --button-ink: #291521;
-    --wash: #a3296055;
-    --line: #edbacb;
-    --card: #2a1829;
+    --bg: #17131f;
+    --ink: #faedf1;
+    --muted: #c8b1c4;
+    --accent: #eabbd5;
+    --button-ink: #29182d;
+    --line: #dab4d5;
+    --wash: #a53e7540;
   }
 
   body[data-scene="velvet"] {
     color-scheme: dark;
-    --bg: #1b101a;
-    --ink: #ffedf0;
-    --muted: #d5acba;
-    --accent: #efa0b8;
-    --button-ink: #321323;
-    --wash: #c9235859;
-    --line: #f1a3bd;
-    --card: #361926;
+    --bg: #21101c;
+    --ink: #fff0f2;
+    --muted: #d8b0c1;
+    --accent: #efabc5;
+    --button-ink: #321426;
+    --line: #eda4c2;
+    --wash: #c12e6552;
   }
 
   body[data-scene="diamond"] {
     color-scheme: dark;
-    --bg: #101e2b;
-    --ink: #edfaff;
-    --muted: #adc6d6;
-    --accent: #afe9f5;
-    --button-ink: #142c3a;
-    --wash: #439dce4d;
-    --line: #a5eaff;
-    --card: #1c3446;
+    --bg: #102432;
+    --ink: #effbff;
+    --muted: #b5cddc;
+    --accent: #afe5f4;
+    --button-ink: #143041;
+    --line: #afeaff;
+    --wash: #389cc344;
   }
 
   body[data-scene="pink"] {
     color-scheme: light;
-    --bg: #f8dde6;
-    --ink: #641b43;
-    --muted: #844562;
-    --accent: #902754;
-    --button-ink: #fff0f5;
-    --wash: #e8458452;
-    --line: #ae3264;
-    --card: #f9eaf0;
+    --bg: #f7dce7;
+    --ink: #651e44;
+    --muted: #814360;
+    --accent: #902b59;
+    --button-ink: #fff3f8;
+    --line: #9f3565;
+    --wash: #e5478a38;
   }
 
   body[data-scene="violet"] {
     color-scheme: dark;
-    --bg: #23153e;
-    --ink: #f5eaff;
-    --muted: #c8b5de;
-    --accent: #d7b8ff;
-    --button-ink: #2b1648;
-    --wash: #ac68de59;
-    --line: #d9b5fc;
-    --card: #392450;
+    --bg: #281740;
+    --ink: #f5ecff;
+    --muted: #cebce1;
+    --accent: #d8bcff;
+    --button-ink: #301c4c;
+    --line: #d8bbff;
+    --wash: #a569d54d;
   }
 
   body[data-scene="gold"] {
     color-scheme: light;
     --bg: #faf0dc;
-    --ink: #543420;
-    --muted: #7b5739;
-    --accent: #865021;
-    --button-ink: #fff6e5;
-    --wash: #e9a83952;
-    --line: #af6e25;
-    --card: #fff6e5;
+    --ink: #57361f;
+    --muted: #7c583c;
+    --accent: #875324;
+    --button-ink: #fff5e5;
+    --line: #97602b;
+    --wash: #e7aa4144;
+  }
+
+  body[data-scene="night"] {
+    color-scheme: dark;
+    --bg: #101725;
+    --ink: #f3edf9;
+    --muted: #b6b9d2;
+    --accent: #d6c7ee;
+    --button-ink: #211b36;
+    --line: #d1c5f0;
+    --wash: #7162ae30;
   }
 
   html {
     min-height: 100%;
-    background: #18131c;
+    background: #17131f;
   }
 
   body {
     margin: 0;
     min-height: 100vh;
     min-height: 100svh;
-    padding: 30px 20px;
-    padding-top: max(30px, env(safe-area-inset-top));
-    padding-bottom: max(30px, env(safe-area-inset-bottom));
     display: grid;
     place-items: center;
+    padding: 36px 23px;
+    padding-top: max(36px, env(safe-area-inset-top));
+    padding-bottom: max(36px, env(safe-area-inset-bottom));
     background: var(--bg);
     color: var(--ink);
     font-family: Georgia, "Times New Roman", serif;
     -webkit-font-smoothing: antialiased;
     isolation: isolate;
-    transition: background-color 950ms ease, color 700ms ease;
+    transition: background-color 1300ms ease, color 800ms ease;
   }
 
-  .backdrop, .texture, .decor {
+  .background, .texture, .sky, .effects {
     position: fixed;
     inset: 0;
-    overflow: hidden;
     pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
   }
 
-  .backdrop {
-    z-index: -3;
+  .background {
     background:
-      radial-gradient(ellipse at 15% 20%, var(--wash), transparent 55%),
-      radial-gradient(ellipse at 90% 80%, var(--wash), transparent 50%);
+      radial-gradient(ellipse at 10% 15%, var(--wash), transparent 54%),
+      radial-gradient(ellipse at 95% 85%, var(--wash), transparent 50%);
   }
 
   .texture {
-    z-index: -1;
-    opacity: .16;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23888' filter='url(%23n)' opacity='.35' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+    opacity: .12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 150 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath d='M0 0h150v150H0z' fill='%23888' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
   }
 
-  .decor { z-index: -2; }
+  /* Небо распределено по краям; центр оставляем словам. */
+  .sky {
+    width: 100%;
+    height: 100%;
+    color: var(--line);
+    opacity: .65;
+    transition: color 1s ease, opacity 1s ease;
+  }
+
+  body[data-mode="cover"] .sky { opacity: .2; }
+  body[data-mode="final"] .sky { opacity: 1; }
+
+  .star, .star-halo, .star-link {
+    opacity: 0;
+    transition: opacity 1100ms ease;
+  }
+
+  .star.visible { opacity: .88; }
+  .star-halo.visible { opacity: .12; }
+  .star-link.visible { opacity: .3; }
+
+  .star {
+    fill: currentColor;
+  }
+
+  .star-halo {
+    fill: currentColor;
+  }
+
+  .star-link {
+    stroke: currentColor;
+    stroke-width: .65;
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  body[data-mode="final"] .star-link.visible { opacity: .55; }
 
   .motif {
     position: absolute;
-    opacity: 0;
-    transition: opacity 900ms ease, transform 1500ms ease;
     color: var(--line);
+    opacity: 0;
+    transition: opacity 1100ms ease, transform 1600ms ease;
   }
 
-  /* Бархатная ночь: большой тонкий ореол. */
   .halo {
-    width: min(85vw, 570px);
+    width: min(90vw, 600px);
     aspect-ratio: 1;
-    left: -24%;
-    top: 12%;
     border: 1px solid currentColor;
     border-radius: 50%;
-    box-shadow: 0 0 90px var(--wash), inset 0 0 90px var(--wash);
+    left: -35%;
+    top: 19%;
+    box-shadow: inset 0 0 80px var(--wash), 0 0 80px var(--wash);
     transform: scale(.8);
   }
 
   [data-scene="velvet"] .halo {
-    opacity: .35;
+    opacity: .23;
     transform: scale(1);
   }
 
-  /* Алмазный свет: прозрачные геометрические грани. */
-  .facets {
-    width: min(85vw, 530px);
-    height: auto;
-    right: -20%;
-    top: 9%;
-    transform: rotate(-10deg) scale(.9);
+  .diamond {
+    width: 270px;
+    height: 340px;
+    border: 1px solid currentColor;
+    right: -165px;
+    top: 16%;
+    transform: rotate(25deg);
   }
 
-  [data-scene="diamond"] .facets {
-    opacity: .28;
-    transform: rotate(8deg) scale(1);
+  .diamond::after {
+    content: "";
+    position: absolute;
+    inset: 28px;
+    border: 1px solid currentColor;
   }
 
-  /* Розовая плёнка: световой край и контур цветка. */
+  [data-scene="diamond"] .diamond {
+    opacity: .24;
+    transform: rotate(40deg);
+  }
+
   .flower {
-    width: 300px;
-    height: 300px;
-    left: -135px;
-    bottom: 8%;
-    transform: rotate(-15deg);
+    width: 280px;
+    height: 280px;
+    left: -160px;
+    bottom: 10%;
+    transform: rotate(-20deg);
   }
 
   [data-scene="pink"] .flower {
-    opacity: .25;
-    transform: rotate(12deg);
+    opacity: .23;
+    transform: rotate(10deg);
   }
 
-  .film-edge {
-    width: 90px;
-    top: 0;
-    bottom: 0;
-    right: -35px;
-    background: linear-gradient(
-      90deg, transparent, var(--wash), var(--line)
-    );
-    filter: blur(24px);
-  }
-
-  [data-scene="pink"] .film-edge { opacity: .45; }
-
-  /* Фиалковый сон: наклонённые орбиты. */
   .orbit {
-    width: min(120vw, 760px);
-    height: 260px;
-    top: 24%;
-    left: -35%;
+    width: min(115vw, 750px);
+    height: 240px;
     border: 1px solid currentColor;
     border-radius: 50%;
-    transform: rotate(-35deg) scale(.8);
+    left: -48%;
+    top: 24%;
+    transform: rotate(-35deg);
   }
 
   .orbit::after {
@@ -213,77 +244,97 @@
   }
 
   [data-scene="violet"] .orbit {
-    opacity: .25;
-    transform: rotate(-25deg) scale(1);
+    opacity: .24;
+    transform: rotate(-23deg);
   }
 
-  /* Золотой час: смещённое солнце и линия горизонта. */
   .sun {
     width: 220px;
     height: 220px;
     border: 1px solid currentColor;
     border-radius: 50%;
-    top: 6%;
-    right: -95px;
+    right: -130px;
+    top: 10%;
+    transform: translateY(30px);
     background: radial-gradient(circle, var(--wash), transparent 70%);
-    transform: translateY(35px);
   }
 
   .sun::after {
     content: "";
     position: absolute;
+    left: -90px;
+    right: -90px;
     top: 55%;
-    left: -130px;
-    width: 390px;
     height: 1px;
     background: currentColor;
   }
 
   [data-scene="gold"] .sun {
-    opacity: .35;
+    opacity: .3;
     transform: translateY(0);
   }
 
-  /* Разовая засветка от края — без резкой вспышки. */
   .light-pass {
     position: absolute;
-    inset: -30%;
+    inset: -40%;
     opacity: 0;
     background: linear-gradient(
-      110deg, transparent 38%, var(--wash) 50%, transparent 62%
+      110deg, transparent 35%, var(--wash) 50%, transparent 65%
     );
   }
 
-  .decor.play .light-pass {
-    animation: light-pass 1400ms ease-in-out both;
+  .effects.play .light-pass {
+    animation: light-pass 1500ms ease both;
   }
 
-  .decor.play .motif {
-    animation: accent-arrive 1200ms ease both;
+  /* Кольца — тихое визуальное эхо удара по тарелке. */
+  .resonance {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    left: -35px;
+    top: 36%;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    opacity: 0;
+  }
+
+  .effects.drum .resonance {
+    animation: resonance 1700ms ease-out both;
+  }
+
+  .effects.drum .resonance:nth-of-type(2) {
+    animation-delay: 180ms;
+  }
+
+  .effects.drum .resonance:nth-of-type(3) {
+    animation-delay: 360ms;
   }
 
   main {
-    width: min(100%, 610px);
+    position: relative;
+    z-index: 1;
+    width: min(100%, 590px);
     text-align: center;
-    animation: appear 850ms ease both;
+    animation: arrive 900ms ease both;
   }
 
   .brand {
     margin: 0 0 24px;
     color: var(--muted);
-    font: 500 10px/1.7 system-ui, sans-serif;
-    letter-spacing: .3em;
+    font: 500 10px/1.8 system-ui, sans-serif;
+    letter-spacing: .26em;
     text-transform: uppercase;
   }
 
   .stage {
+    min-height: 350px;
     display: grid;
     align-content: center;
-    min-height: 355px;
-    padding: 25px 6px;
+    padding: 30px 12px;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 320ms ease, transform 420ms ease;
+    transition: opacity 350ms ease, transform 450ms ease;
   }
 
   .stage.hidden {
@@ -291,138 +342,158 @@
     transform: translateY(9px);
   }
 
-  .stage.welcome {
+  .stage.cover {
     padding: 0;
     min-height: 0;
   }
 
-  .stage.welcome.hidden {
+  .stage.cover.hidden {
     transform: scale(1.035);
   }
 
-  /* Приветствие — отдельная обложка альбома. */
   .album {
     position: relative;
     isolation: isolate;
-    width: min(100%, 420px);
-    margin: 0 auto;
-    min-height: 410px;
-    padding: 39px 25px 30px;
     overflow: hidden;
+    width: min(100%, 410px);
+    min-height: 435px;
+    margin: 0 auto;
+    padding: 37px 24px 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #bd8ca04d;
+    border: 1px solid #dfafce40;
     border-radius: 5px;
     background:
-      radial-gradient(ellipse at 70% 15%, #ae3c6559, transparent 60%),
-      linear-gradient(145deg, #362135, #16131e 75%);
-    box-shadow: 0 25px 75px #00000033;
-  }
-
-  .album::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 350px;
-    height: 160px;
-    border: 1px solid #dbadc14d;
-    border-radius: 50%;
-    top: 30px;
-    left: 15%;
-    transform: rotate(-33deg);
+      radial-gradient(ellipse at 90% 0%, #a9447755, transparent 60%),
+      linear-gradient(145deg, #342238, #161522 80%);
+    box-shadow: 0 25px 75px #00000030;
   }
 
   .album::after {
     content: "";
     position: absolute;
     inset: 9px;
-    border: 1px solid #f1d5e012;
+    border: 1px solid #f8d8ed13;
     pointer-events: none;
   }
 
+  .record {
+    position: absolute;
+    z-index: -1;
+    width: 330px;
+    height: 330px;
+    right: -140px;
+    top: -115px;
+    border-radius: 50%;
+    opacity: .45;
+    background: repeating-radial-gradient(
+      circle,
+      transparent 0 10px,
+      #e5b7d329 11px,
+      transparent 12px 18px
+    );
+  }
+
   .album-star {
-    margin-bottom: 30px;
-    color: #f1c8dc;
-    font-size: 32px;
-    animation: star-breathe 6s ease-in-out infinite;
+    margin-bottom: 28px;
+    font-size: 33px;
+    color: #edc9e3;
+    animation: breathe 6s ease-in-out infinite;
   }
 
   .album-label {
-    margin: 0 0 19px;
-    color: #d4b2c2;
-    font: 10px/1.6 system-ui, sans-serif;
+    margin: 0 0 21px;
+    color: #cfadc6;
+    font: 10px/1.7 system-ui, sans-serif;
     letter-spacing: .22em;
     text-transform: uppercase;
   }
 
   .album h1 {
     margin: 0;
-    color: #fff0ee;
-    font-size: clamp(29px, 7vw, 40px);
+    color: #fff0f3;
     font-weight: normal;
-    line-height: 1.17;
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.15;
   }
 
   .album-copy {
     margin: 22px 0 0;
-    color: #e4cbd3;
+    color: #e2c9d9;
     font-size: 18px;
-    line-height: 1.65;
+    line-height: 1.7;
     text-wrap: balance;
   }
 
   .album-bottom {
-    margin: 30px 0 0;
-    color: #c0a1b0;
-    font: 9px/1.7 system-ui, sans-serif;
-    letter-spacing: .19em;
+    margin: 29px 0 0;
+    color: #c4a5bc;
+    font: 9px/1.8 system-ui, sans-serif;
+    letter-spacing: .14em;
     text-transform: uppercase;
   }
 
-  .scene-label {
-    margin: 0 0 29px;
+  .label {
+    margin: 0 0 28px;
     color: var(--muted);
-    font: 10px/1.7 system-ui, sans-serif;
-    letter-spacing: .23em;
+    font: 10px/1.8 system-ui, sans-serif;
+    letter-spacing: .2em;
     text-transform: uppercase;
   }
 
   .message {
     margin: 0;
-    font-size: clamp(26px, 5.8vw, 39px);
+    font-size: clamp(25px, 5.6vw, 37px);
     font-weight: normal;
-    line-height: 1.43;
+    line-height: 1.47;
     text-wrap: pretty;
     overflow-wrap: break-word;
   }
 
-  .stage.note .message {
-    font-style: italic;
-    font-size: clamp(25px, 5.3vw, 35px);
+  .message em {
+    font-weight: normal;
+    color: var(--accent);
   }
 
-  .music-mark {
-    display: block;
-    margin: 26px 0 0;
+  .stage.note .message {
+    font-size: clamp(24px, 5.2vw, 34px);
+    font-style: italic;
+  }
+
+  .final-title {
+    margin: 0 0 25px;
+    font-size: clamp(36px, 8vw, 52px);
+    font-weight: normal;
+    line-height: 1.16;
+    text-wrap: balance;
+  }
+
+  .final-copy {
+    margin: 0 auto 19px;
+    max-width: 390px;
+    font-size: 18px;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .final-copy.muted {
     color: var(--muted);
-    font: 10px/1.7 system-ui, sans-serif;
-    letter-spacing: .12em;
+    font-size: 15px;
   }
 
   .button-wrap {
     position: relative;
     width: fit-content;
     max-width: 100%;
-    margin: 26px auto 0;
-    isolation: isolate;
+    margin: 25px auto 0;
   }
 
   .button-wrap::before {
     content: "";
     position: absolute;
-    inset: -9px;
+    inset: -8px;
     border: 1px solid var(--line);
     border-radius: 999px;
     opacity: 0;
@@ -430,27 +501,25 @@
   }
 
   .button-wrap.pulse::before {
-    animation: ring 1000ms ease-out both;
+    animation: ring 1100ms ease-out both;
   }
 
   button {
-    position: relative;
-    overflow: hidden;
     display: block;
-    min-height: 55px;
     max-width: 100%;
-    padding: 17px 26px;
+    min-height: 55px;
+    padding: 17px 25px;
     border: 1px solid transparent;
     border-radius: 999px;
-    color: var(--button-ink);
     background: var(--accent);
+    color: var(--button-ink);
     font: 500 13px/1.5 system-ui, sans-serif;
     cursor: pointer;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     transition:
-      background-color 750ms ease,
-      color 750ms ease,
+      background-color 900ms ease,
+      color 900ms ease,
       transform 180ms ease;
   }
 
@@ -467,38 +536,13 @@
     button:hover { transform: translateY(-2px); }
   }
 
-  .constellation {
-    display: block;
-    width: 132px;
-    height: 45px;
-    margin: 22px auto 0;
-    overflow: visible;
-    color: var(--line);
-    opacity: 1;
-    transition: opacity 500ms ease;
-  }
-
-  body.intro .constellation {
-    display: none;
-  }
-
-  .constellation circle,
-  .constellation path {
-    opacity: 0;
-    transition: opacity 700ms ease;
-  }
-
-  .constellation .visible { opacity: .7; }
-
   footer {
-    min-height: 21px;
-    margin-top: 13px;
+    min-height: 23px;
+    margin-top: 27px;
     color: var(--muted);
-    font: 11px/1.8 system-ui, sans-serif;
+    font: 11px/1.9 system-ui, sans-serif;
     text-wrap: balance;
   }
-
-  body.intro footer { margin-top: 22px; }
 
   .sr-only {
     position: absolute;
@@ -512,37 +556,38 @@
     border: 0;
   }
 
-  @keyframes appear {
+  @keyframes arrive {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes star-breathe {
-    0%, 100% { opacity: .55; transform: scale(.94); }
-    50% { opacity: 1; transform: scale(1.06); }
+  @keyframes breathe {
+    0%, 100% { opacity: .55; transform: scale(.95); }
+    50% { opacity: 1; transform: scale(1.07); }
   }
 
   @keyframes light-pass {
     0% { opacity: 0; transform: translateX(-35%); }
-    45% { opacity: .6; }
+    45% { opacity: .65; }
     100% { opacity: 0; transform: translateX(35%); }
   }
 
-  @keyframes accent-arrive {
-    0% { translate: 0 12px; }
-    100% { translate: 0 0; }
+  @keyframes resonance {
+    0% { opacity: 0; transform: scale(.4); }
+    20% { opacity: .3; }
+    100% { opacity: 0; transform: scale(3.3); }
   }
 
   @keyframes ring {
-    0% { opacity: 0; transform: scale(.96); }
-    25% { opacity: .4; }
-    100% { opacity: 0; transform: scale(1.25, 1.7); }
+    0% { opacity: 0; transform: scale(.98); }
+    25% { opacity: .35; }
+    100% { opacity: 0; transform: scale(1.2, 1.6); }
   }
 
   @media (max-width: 370px) {
-    body { padding-left: 17px; padding-right: 17px; }
-    .album { padding: 32px 19px; min-height: 380px; }
-    .stage:not(.welcome) { min-height: 375px; }
+    body { padding-left: 18px; padding-right: 18px; }
+    .album { padding: 32px 18px; min-height: 410px; }
+    .stage:not(.cover) { padding-left: 9px; padding-right: 9px; }
   }
 
   body.paused *,
@@ -560,387 +605,503 @@
 </style>
 </head>
 
-<body class="intro" data-scene="intro">
-  <div class="backdrop" aria-hidden="true"></div>
-  <div class="texture" aria-hidden="true"></div>
+<body data-scene="intro" data-mode="cover">
+<div class="background" aria-hidden="true"></div>
+<div class="texture" aria-hidden="true"></div>
 
-  <div class="decor" id="decor" aria-hidden="true">
-    <div class="motif halo"></div>
+<svg class="sky" id="sky" viewBox="0 0 100 100"
+     preserveAspectRatio="none" aria-hidden="true">
+  <g id="sky-links"></g>
+  <g id="sky-stars"></g>
+</svg>
 
-    <svg class="motif facets" viewBox="0 0 400 500"
-         fill="none" stroke="currentColor" stroke-width="1">
-      <path d="M200 20 365 170 290 425 100 460 25 205Z"/>
-      <path d="M200 20 230 205 365 170M230 205 290 425
-               M230 205 100 460M230 205 25 205
-               M25 205 200 20M100 460 365 170"/>
-    </svg>
+<div class="effects" id="effects" aria-hidden="true">
+  <div class="motif halo"></div>
+  <div class="motif diamond"></div>
 
-    <svg class="motif flower" viewBox="0 0 300 300"
-         fill="none" stroke="currentColor" stroke-width="1">
-      <ellipse cx="150" cy="150" rx="45" ry="125"/>
-      <ellipse cx="150" cy="150" rx="45" ry="125"
-               transform="rotate(60 150 150)"/>
-      <ellipse cx="150" cy="150" rx="45" ry="125"
-               transform="rotate(120 150 150)"/>
-      <circle cx="150" cy="150" r="22"/>
-    </svg>
+  <svg class="motif flower" viewBox="0 0 300 300"
+       fill="none" stroke="currentColor" stroke-width="1">
+    <ellipse cx="150" cy="150" rx="43" ry="120"/>
+    <ellipse cx="150" cy="150" rx="43" ry="120"
+             transform="rotate(60 150 150)"/>
+    <ellipse cx="150" cy="150" rx="43" ry="120"
+             transform="rotate(120 150 150)"/>
+    <circle cx="150" cy="150" r="20"/>
+  </svg>
 
-    <div class="motif film-edge"></div>
-    <div class="motif orbit"></div>
-    <div class="motif sun"></div>
-    <div class="light-pass"></div>
+  <div class="motif orbit"></div>
+  <div class="motif sun"></div>
+  <div class="light-pass"></div>
+
+  <section>
+    <i class="resonance"></i>
+    <i class="resonance"></i>
+    <i class="resonance"></i>
+  </section>
+</div>
+
+<main>
+  <p class="brand" id="brand">маленькая вселенная · личное издание</p>
+
+  <section class="stage cover" id="stage" aria-label="Послание">
+    <div class="album">
+      <div class="record" aria-hidden="true"></div>
+      <div class="album-star" aria-hidden="true">✧</div>
+      <p class="album-label">посвящается тебе</p>
+
+      <h1>Василиса<br>Романовна</h1>
+
+      <p class="album-copy">
+        Если бы тёплые слова<br>
+        могли стать альбомом,<br>
+        этот был бы посвящён тебе.
+      </p>
+
+      <p class="album-bottom">
+        мягкость внутри · электричество снаружи
+      </p>
+    </div>
+  </section>
+
+  <div class="button-wrap" id="button-wrap">
+    <button type="button" id="button">
+      Открыть маленькую вселенную
+    </button>
   </div>
 
-  <main>
-    <p class="brand" id="brand">маленькая вселенная · личное издание</p>
+  <footer id="footer">здесь звучат слова, не музыка</footer>
 
-    <section class="stage welcome" id="stage"
-             aria-label="Личное послание">
-      <div class="album">
-        <div class="album-star" aria-hidden="true">✧</div>
-        <p class="album-label">посвящается тебе</p>
+  <p class="sr-only" id="announcement"
+     aria-live="polite" aria-atomic="true"></p>
 
-        <h1>Василиса<br>Романовна</h1>
-
-        <p class="album-copy">
-          Если бы тёплые слова<br>
-          могли стать альбомом,<br>
-          этот был бы посвящён тебе.
-        </p>
-
-        <p class="album-bottom">мягкость внутри · электричество снаружи</p>
-      </div>
-    </section>
-
-    <div class="button-wrap" id="button-wrap">
-      <button type="button" id="button">
-        Включить маленькую вселенную
-      </button>
-    </div>
-
-    <svg class="constellation" viewBox="0 0 132 45"
-         aria-hidden="true">
-      <path d="M9 29 30 14" stroke="currentColor" fill="none"/>
-      <path d="M30 14 52 27" stroke="currentColor" fill="none"/>
-      <path d="M52 27 77 10" stroke="currentColor" fill="none"/>
-      <path d="M77 10 99 25" stroke="currentColor" fill="none"/>
-      <path d="M99 25 123 15" stroke="currentColor" fill="none"/>
-
-      <circle cx="9" cy="29" r="2" fill="currentColor"/>
-      <circle cx="30" cy="14" r="2" fill="currentColor"/>
-      <circle cx="52" cy="27" r="2" fill="currentColor"/>
-      <circle cx="77" cy="10" r="2" fill="currentColor"/>
-      <circle cx="99" cy="25" r="2" fill="currentColor"/>
-      <circle cx="123" cy="15" r="2" fill="currentColor"/>
-    </svg>
-
-    <footer id="footer">здесь звучат слова, не музыка</footer>
-
-    <p class="sr-only" id="announcement"
-       aria-live="polite" aria-atomic="true"></p>
-
-    <noscript>
-      <p>Чтобы открыть послание, включи JavaScript в браузере.</p>
-    </noscript>
-  </main>
+  <noscript>
+    <p>Чтобы открыть послание, включи JavaScript в браузере.</p>
+  </noscript>
+</main>
 
 <script>
-  // Фразы написаны для сайта.
-  // Названия песен — музыкальные отсылки, не цитаты из текстов.
+  // Звёздочки вокруг слова означают выделение курсивом.
+  // Музыкальные фразы — собственные метафоры,
+  // а не цитаты из текстов песен.
 
-  const ordinary = [
-    ["В тебе есть свет, который не просит внимания, но делает всё вокруг немного прекраснее.", "gold"],
+  const gentle = [
+    ["В тебе есть *свет*, который не просит внимания, но делает всё вокруг немного прекраснее.", "gold"],
     ["Ты — как строчка в любимой книге: её знаешь наизусть, но всё равно перечитываешь с улыбкой.", "pink"],
-    ["Твоя улыбка — маленькая весна, которой не нужно сверяться с календарём.", "gold"],
+    ["Твоя улыбка — маленькая *весна*, которой не нужно сверяться с календарём.", "gold"],
     ["В тебе есть редкое очарование: рядом с тобой даже обычный день кажется неслучайным.", "velvet"],
     ["Если бы нежность можно было нарисовать, художнику всё равно пришлось бы искать вдохновение в тебе.", "pink"],
     ["У твоего очарования явно нет привычки предупреждать о своём появлении.", "velvet"],
-    ["Ты похожа на первый тёплый ветер: цветы ещё не раскрылись, а мир уже предвкушает что-то хорошее.", "gold"],
     ["Тебе не нужно быть ярче всех. У твоего света есть то, чего не повторит ни одна звезда.", "diamond"],
-    ["В тебе прекрасно не только сияние, но и глубина, из которой оно рождается.", "violet"],
+    ["В тебе прекрасно не только сияние, но и *глубина*, из которой оно рождается.", "violet"],
     ["Если бы звёзды коллекционировали земные чудеса, твоя улыбка занимала бы отдельное созвездие.", "diamond"],
-    ["Ты — та самая деталь, из-за которой простой пейзаж вдруг становится картиной.", "gold"],
-    ["В тебе есть красота, после которой хочется замечать прекрасное внимательнее.", "pink"],
-    ["Кажется, рассвет немного подражает тебе: тоже приходит и делает всё мягче.", "gold"],
-    ["Ты не украшение чужой истории. Ты — целое небо со своими созвездиями.", "violet"],
+    ["Ты не украшение чужой истории. Ты — целое *небо* со своими созвездиями.", "violet"],
     ["Твой смех мог бы быть уважительной причиной, чтобы ненадолго остановить время.", "gold"],
-    ["Есть девушки, которым дарят стихи. А есть ты — из-за которой их начинают писать.", "velvet"],
     ["Тебе удивительно идёт быть собой. Ни одному образу не сравниться с оригиналом.", "pink"],
-    ["Если бы этот день был конвертом, самым тёплым письмом внутри была бы ты.", "pink"],
-    ["Ты — как музыка из открытого окна: всего мгновение, а мир уже кажется добрее.", "gold"],
     ["У тебя есть собственная гравитация. Иначе почему мысли так легко возвращаются к тебе?", "violet"],
-    ["Твоя красота не требует восклицательных знаков. Иногда от восхищения просто становится тихо.", "velvet"],
-    ["Если бы Афродита вела дневник вдохновения, для тебя в нём нашлась бы отдельная глава.", "pink"],
-    ["Эос каждое утро раскрашивает небо. Но тебе для очарования даже не нужны такие декорации.", "gold"],
+    ["Твоя красота не требует восклицательных знаков. Иногда от восхищения просто становится *тихо*.", "velvet"],
     ["Ты могла бы быть музой. Но быть собой у тебя получается гораздо интереснее.", "violet"],
-    ["Ты — убедительный аргумент в пользу того, что у вселенной хороший вкус.", "velvet"],
-    ["Ты похожа на сад после дождя: в тебе столько жизни, что даже слова хочется выбирать бережнее.", "pink"],
     ["Миру очень идёт твоё присутствие.", "gold"],
     ["Некоторые мгновения хочется сохранить между страницами, как цветы. Твоя улыбка — одно из них.", "pink"],
-    ["В тебе есть та лёгкость, с которой солнечный блик превращает обычную стену в маленькое чудо.", "gold"],
     ["Ты прекрасна не как что-то. Ты прекрасна так, что хочется придумывать новые сравнения.", "velvet"],
-    ["Даже эти слова сейчас немного волнуются: им хочется оказаться достойными твоей улыбки.", "pink"],
-    ["Твоя нежность — не хрупкость. Это сила, которая умеет обходиться без шума.", "violet"],
+    ["Твоя нежность — не хрупкость. Это *сила*, которая умеет обходиться без шума.", "pink"],
     ["Есть свет, от которого щурятся. А есть твой — к нему хочется повернуться.", "gold"],
-    ["Ты — как неожиданная любимая песня посреди обычного дня.", "pink"],
-    ["Если бы луна увидела, как тебе идёт мягкий свет, она бы задержалась над твоим окном чуть дольше.", "diamond"],
     ["Тебе не нужен идеальный день, чтобы быть прекрасной его частью.", "gold"],
-    ["Твоё очарование похоже на аромат цветущего сада: его не удержать в ладонях, но трудно забыть.", "pink"],
-    ["Наверное, поэзия и появилась потому, что однажды обычных слов для такой девушки оказалось мало.", "velvet"],
-    ["Если бы тёплый свет мог выбирать, где ему остаться, он выбрал бы твою улыбку.", "gold"],
-    ["Ты похожа на хорошую новость, которую хочется перечитать ещё раз.", "pink"],
     ["Есть красота, которую замечают. Твою — уносят с собой в памяти.", "velvet"],
-    ["Ты словно оставляешь на дне обычных минут немного золотой пыльцы.", "gold"],
-    ["Твоя улыбка могла бы стать маленьким праздником без даты и повода.", "pink"],
-    ["Этот сайт маленький только потому, что восхищение пока не научились измерять пикселями.", "violet"],
-    ["Если бы мечтам требовался путеводный свет, они могли бы ориентироваться на тебя.", "diamond"],
-    ["В тебе есть что-то от тихого звёздного вечера: хочется отложить все дела и просто любоваться.", "violet"],
-    ["Ты умеешь быть той самой неожиданной нежностью, которой не хватало целому дню.", "pink"],
-    ["Рядом с тобой у времени, кажется, появляется желание идти помедленнее.", "velvet"]
+    ["Ты похожа на хорошую новость, которую хочется перечитать ещё раз.", "pink"],
+    ["В тебе есть что-то от тихого звёздного вечера: хочется отложить все дела и просто любоваться.", "diamond"]
   ];
 
-  const musical = [
-    ["Твои глаза красивее, чем обещает название Diamond Eyes.", "diamond"],
-    ["Если бы у этой нежности был саундтрек, сейчас играла бы Sextape.", "violet"],
-    ["В тебе есть что-то от Beauty School: хочется поставить весь остальной мир на паузу.", "pink"],
-    ["Be Quiet and Drive — а можно просто помолчать рядом с тобой, и никуда не ехать?", "velvet"],
-    ["Если бы Cherry Waves были цветом, ими можно было бы нарисовать этот вечер. Но для твоей улыбки всё равно понадобился бы свет.", "velvet"],
-    ["Твоя улыбка — любимый неожиданный переход от тяжёлых гитар к чему-то невероятно нежному.", "gold"],
+  const drums = [
+    ["В твоих руках ритм становится не просто счётом, а способом сказать что-то прекрасное *без единого слова*.", "diamond"],
+    ["Ты не просто держишь ритм. Ты даёшь музыке *пульс*.", "velvet"],
+    ["За каждым движением, которое однажды станет лёгким, стоят твои старания. И ими уже можно гордиться.", "gold"],
+    ["Пусть сейчас получается не всё. Это не отменяет ни твоего таланта, ни дороги, которую ты уже прошла.", "pink"],
+    ["Иногда *мечта* звучит не как тихое желание, а как четыре удара палочками перед началом.", "violet"],
+    ["Ты большая молодец. Не только когда всё звучит идеально — но и когда пробуешь *ещё раз*.", "gold"],
+    ["Тебе очень идёт создавать музыку: превращать движение в звук, а звук — в чьё-то настроение.", "pink"],
+    ["Даже самому сложному рисунку можно дать время. Тебе не нужно уметь всё сегодня, чтобы однажды сыграть его свободно.", "diamond"],
+    ["Хочется, чтобы однажды ты вышла на сцену, о которой мечтаешь, и подумала: «Как хорошо, что я тогда не остановилась».", "violet"],
+    ["У твоей мечты уже есть пульс. Ты сама задаёшь его каждым новым занятием.", "velvet"],
+    ["Ты красиво играешь. Не только потому, что попадаешь в ритм, — в этой музыке есть *ты*.", "pink"],
+    ["Один трудный день за установкой не определяет, какая ты музыкантка. У твоей истории гораздо больше тактов.", "diamond"]
+  ];
+
+  const music = [
+    ["Твои глаза красивее, чем обещает название *Diamond Eyes*.", "diamond"],
+    ["Если бы у этой нежности был саундтрек, сейчас играла бы *Sextape*.", "violet"],
+    ["В тебе есть что-то от *Beauty School*: хочется поставить весь остальной мир на паузу.", "pink"],
+    ["*Be Quiet and Drive* — а можно просто помолчать рядом с тобой, и никуда не ехать?", "velvet"],
+    ["Если бы *Cherry Waves* были цветом, ими можно было бы нарисовать этот вечер. Но для твоей улыбки всё равно понадобился бы свет.", "velvet"],
+    ["Твоя улыбка — любимый неожиданный переход от тяжёлых гитар к чему-то невероятно *нежному*.", "gold"],
     ["Некоторые песни хочется слушать на повторе. А некоторые мгновения с тобой — проживать ещё раз.", "violet"],
-    ["Рядом с тобой даже самый шумный день хочется поставить на тихую громкость — чтобы не пропустить твой голос.", "diamond"]
+    ["В твоём плейлисте — *Deftones*. А в твоих руках — возможность однажды создать чей-то любимый момент в музыке.", "diamond"]
   ];
 
-  const notes = [
-    "Музыкальные отсылки здесь не случайны. Хотелось, чтобы ты узнала в этом маленьком мире что-то своё.",
-    "На самом деле, кнопка здесь — просто повод сказать тебе ещё что-нибудь хорошее.",
-    "Маленькая пауза. Если ты сейчас улыбаешься, у этого сайта всё получилось.",
-    "Здесь нет последнего трека. Когда тёплые слова заканчиваются, они просто начинают новый круг."
+  const note = {
+    id: "note",
+    kind: "note",
+    scene: "velvet",
+    text: "Музыкальные отсылки здесь не случайны. Хотелось, чтобы ты узнала в этом маленьком мире что-то *своё*."
+  };
+
+  const catalog = [
+    ...gentle.map(([text, scene], i) => ({
+      id: `g${i}`, kind: "gentle", text, scene
+    })),
+    ...drums.map(([text, scene], i) => ({
+      id: `d${i}`, kind: "drum", text, scene
+    })),
+    ...music.map(([text, scene], i) => ({
+      id: `m${i}`, kind: "music", text, scene
+    })),
+    note
   ];
+
+  const byId = new Map(catalog.map(item => [item.id, item]));
 
   const scenes = {
-    velvet:  { label: "бархатная ночь", color: "#1b101a" },
-    diamond: { label: "алмазный свет", color: "#101e2b" },
-    pink:    { label: "розовая плёнка", color: "#f8dde6" },
-    violet:  { label: "фиалковый сон", color: "#23153e" },
-    gold:    { label: "золотой час", color: "#faf0dc" }
+    intro:   { name: "", color: "#17131f" },
+    velvet:  { name: "бархатная ночь", color: "#21101c" },
+    diamond: { name: "алмазный свет", color: "#102432" },
+    pink:    { name: "розовая плёнка", color: "#f7dce7" },
+    violet:  { name: "фиалковый сон", color: "#281740" },
+    gold:    { name: "золотой час", color: "#faf0dc" },
+    night:   { name: "ближе к звёздам", color: "#101725" }
   };
 
   const footnotes = [
-    "маленькие чудеса тоже считаются",
     "у нежности нет обязательного повода",
+    "одна фраза — ещё одна звезда",
     "мягкость тоже умеет звучать громко",
-    "ещё немного света — и можно дальше",
-    "некоторые слова похожи на объятия"
+    "это место никуда не торопится",
+    "маленькие чудеса тоже считаются"
   ];
 
   const stage = document.getElementById("stage");
   const button = document.getElementById("button");
   const buttonWrap = document.getElementById("button-wrap");
-  const decor = document.getElementById("decor");
-  const footer = document.getElementById("footer");
+  const effects = document.getElementById("effects");
   const brand = document.getElementById("brand");
+  const footer = document.getElementById("footer");
   const announcement = document.getElementById("announcement");
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const stars = [...document.querySelectorAll(".constellation circle")];
-  const links = [...document.querySelectorAll(".constellation path")];
-
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const storageKey = "little-universe-album-v4";
 
-  const pools = { ordinary, musical };
-
-  let history = {
-    ordinary: { queue: [], last: -1 },
-    musical: { queue: [], last: -1 }
-  };
-
-  let opened = false;
+  const storageKey = "little-universe-finite-v5";
+  let mode = "cover";
   let busy = false;
-  let clicks = 0;
-  let regularCount = 0;
-  let noteCount = 0;
   let effectTimer;
 
-  // История хранится только в этом браузере.
-  // Ошибка хранилища не мешает пользоваться сайтом.
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey));
+  function shuffle(values) {
+    const result = [...values];
 
-    for (const name of Object.keys(pools)) {
-      const record = saved && saved[name];
-      const size = pools[name].length;
-      const valid = n => Number.isInteger(n) && n >= 0 && n < size;
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
 
-      if (
-        record &&
-        Array.isArray(record.queue) &&
-        record.queue.every(valid) &&
-        new Set(record.queue).size === record.queue.length &&
-        (record.last === -1 || valid(record.last))
-      ) {
-        history[name] = record;
+    return result;
+  }
+
+  function makeState() {
+    const g = shuffle(catalog.filter(x => x.kind === "gentle"));
+    const d = shuffle(catalog.filter(x => x.kind === "drum"));
+    const m = shuffle(catalog.filter(x => x.kind === "music"));
+
+    // Начинаем со светлой сцены.
+    const openingIndex = g.findIndex(x => x.scene === "gold");
+    const opening = g.splice(openingIndex, 1)[0];
+    const deck = [opening.id];
+
+    // Смешиваем нежные и барабанные фразы, не собирая
+    // все комплименты одного типа в один длинный блок.
+    const base = [];
+
+    while (g.length || d.length) {
+      if (g.length) base.push(g.pop());
+      if (d.length) base.push(d.pop());
+      if (g.length) base.push(g.pop());
+    }
+
+    let sinceMusic = 1;
+
+    for (const item of base) {
+      deck.push(item.id);
+      sinceMusic++;
+
+      if (sinceMusic >= 5 && m.length) {
+        deck.push(m.pop().id);
+        sinceMusic = 0;
       }
     }
+
+    while (m.length) deck.push(m.pop().id);
+
+    // Одна особенная записка после первых музыкальных отсылок.
+    deck.splice(12, 0, note.id);
+
+    return { deck, seen: 0, finished: false };
+  }
+
+  function validState(value) {
+    return value &&
+      Array.isArray(value.deck) &&
+      value.deck.length === catalog.length &&
+      new Set(value.deck).size === catalog.length &&
+      value.deck.every(id => byId.has(id)) &&
+      Number.isInteger(value.seen) &&
+      value.seen >= 0 &&
+      value.seen <= value.deck.length &&
+      typeof value.finished === "boolean" &&
+      (!value.finished || value.seen === value.deck.length);
+  }
+
+  let state;
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    state = validState(saved) ? saved : makeState();
   } catch {
-    // Продолжаем с новой историей.
+    state = makeState();
   }
 
   function save() {
     try {
-      localStorage.setItem(storageKey, JSON.stringify(history));
+      localStorage.setItem(storageKey, JSON.stringify(state));
     } catch {
-      // Например, браузер запретил запись.
+      // При недоступном хранилище всё работает,
+      // но прогресс сохраняется только до закрытия страницы.
     }
   }
 
-  function shuffledIndices(length) {
-    const indices = Array.from({ length }, (_, i) => i);
+  save();
 
-    for (let i = length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
+  // Восемь авторских созвездий: верх, низ и боковые края.
+  // 48 уникальных точек — достаточно для текущих 45 посланий.
+  const groups = [
+    [[6,8],[15,5],[23,10],[32,6],[40,12],[47,7]],
+    [[57,7],[64,12],[73,6],[81,10],[89,5],[96,12]],
+    [[4,22],[10,28],[5,35],[12,41],[6,48],[11,54]],
+    [[95,23],[89,29],[96,36],[90,42],[96,49],[90,55]],
+    [[5,61],[11,66],[4,72],[10,77],[5,83],[13,87]],
+    [[95,62],[89,67],[96,73],[90,78],[96,84],[88,88]],
+    [[8,94],[19,90],[27,96],[35,91],[42,97],[48,92]],
+    [[56,94],[64,89],[72,96],[80,91],[87,97],[96,93]]
+  ];
+
+  const svgNS = "http://www.w3.org/2000/svg";
+  const starLayer = document.getElementById("sky-stars");
+  const linkLayer = document.getElementById("sky-links");
+  const stars = [];
+  const links = [];
+  const previousPoint = new Map();
+
+  // Чередуем группы: небо растёт сразу с разных сторон.
+  for (let step = 0; step < 6; step++) {
+    for (let group = 0; group < groups.length; group++) {
+      if (stars.length >= catalog.length) break;
+
+      const [x, y] = groups[group][step];
+      const index = stars.length;
+
+      const halo = document.createElementNS(svgNS, "ellipse");
+      halo.setAttribute("cx", x);
+      halo.setAttribute("cy", y);
+      halo.setAttribute("rx", ".95");
+      halo.setAttribute("ry", ".52");
+      halo.classList.add("star-halo");
+
+      const star = document.createElementNS(svgNS, "ellipse");
+      star.setAttribute("cx", x);
+      star.setAttribute("cy", y);
+      star.setAttribute("rx", ".32");
+      star.setAttribute("ry", ".18");
+      star.classList.add("star");
+
+      starLayer.append(halo, star);
+      stars.push({ star, halo });
+
+      if (previousPoint.has(group)) {
+        const previous = previousPoint.get(group);
+        const line = document.createElementNS(svgNS, "line");
+
+        line.setAttribute("x1", previous.x);
+        line.setAttribute("y1", previous.y);
+        line.setAttribute("x2", x);
+        line.setAttribute("y2", y);
+        line.classList.add("star-link");
+
+        linkLayer.append(line);
+        links.push({ element: line, appearsAt: index + 1 });
+      }
+
+      previousPoint.set(group, { x, y });
     }
-
-    return indices;
   }
 
-  function take(name, preferredScene) {
-    const pool = pools[name];
-    const state = history[name];
+  function updateSky() {
+    stars.forEach(({ star, halo }, i) => {
+      star.classList.toggle("visible", i < state.seen);
+      halo.classList.toggle("visible", i < state.seen);
+    });
 
-    if (!state.queue.length) {
-      state.queue = shuffledIndices(pool.length);
-    }
-
-    const currentScene = document.body.dataset.scene;
-
-    // Из оставшихся фраз выбираем другую сцену, если возможно.
-    // Поэтому история без повторов не нарушается.
-    let candidates = state.queue.filter(index =>
-      index !== state.last &&
-      pool[index][1] !== currentScene
-    );
-
-    if (preferredScene) {
-      const preferred = candidates.filter(index =>
-        pool[index][1] === preferredScene
-      );
-      if (preferred.length) candidates = preferred;
-    }
-
-    if (!candidates.length) {
-      candidates = state.queue.filter(index => index !== state.last);
-    }
-
-    if (!candidates.length) candidates = [...state.queue];
-
-    const index = candidates[Math.floor(Math.random() * candidates.length)];
-
-    state.queue.splice(state.queue.indexOf(index), 1);
-    state.last = index;
-    save();
-
-    return {
-      text: pool[index][0],
-      scene: pool[index][1],
-      music: name === "musical",
-      note: false
-    };
+    links.forEach(({ element, appearsAt }) => {
+      element.classList.toggle("visible", state.seen >= appearsAt);
+    });
   }
 
-  function nextMessage() {
-    // Редкие записки не заменяют музыкальную очередь.
-    if (clicks % 11 === 0) {
-      return {
-        text: notes[noteCount++ % notes.length],
-        scene: "velvet",
-        music: false,
-        note: true
-      };
-    }
-
-    regularCount++;
-
-    // Каждый шестой комплимент — музыкальная пасхалка.
-    if (regularCount % 6 === 0) return take("musical");
-
-    // После тёмной обложки сначала раскрываем светлую сцену.
-    return take("ordinary", clicks === 1 ? "gold" : null);
+  function setScene(name) {
+    document.body.dataset.scene = name;
+    themeMeta.content = scenes[name].color;
   }
 
-  function render(item) {
-    document.body.dataset.scene = item.scene;
-    document.body.classList.remove("intro");
-    themeMeta.content = scenes[item.scene].color;
+  function element(tag, className, text) {
+    const node = document.createElement(tag);
+    node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function addFormattedText(node, text) {
+    // Без вставки HTML: только текст и безопасные элементы <em>.
+    text.split("*").forEach((part, i) => {
+      if (i % 2 === 1) {
+        node.append(element("em", "", part));
+      } else {
+        node.append(document.createTextNode(part));
+      }
+    });
+  }
+
+  function plainText(text) {
+    return text.replace(/\*/g, "");
+  }
+
+  function renderCard() {
+    mode = "reading";
+    document.body.dataset.mode = mode;
+
+    const item = byId.get(state.deck[state.seen - 1]);
+    const remaining = state.deck.length - state.seen;
+
+    // В конце движение цвета успокаивается.
+    const scene = remaining < 3 ? "night" : item.scene;
+
+    setScene(scene);
+    stage.classList.remove("cover", "final");
+    stage.classList.toggle("note", item.kind === "note");
+
+    const labelText = item.kind === "note"
+      ? "сторона B · между строк"
+      : item.kind === "drum"
+        ? "твоей мечте есть куда звучать"
+        : item.kind === "music"
+          ? "маленькая отсылка к твоему плейлисту"
+          : scenes[scene].name;
+
+    const heading = element("h1", "sr-only", "Тёплые слова");
+    const label = element("p", "label", labelText);
+    const message = element("p", "message");
+
+    addFormattedText(message, item.text);
+    stage.replaceChildren(heading, label, message);
+
     brand.textContent = "маленькая вселенная · для тебя";
 
-    stage.classList.remove("welcome");
-    stage.classList.toggle("note", item.note);
+    button.textContent = remaining === 0
+      ? "Посмотреть, что получилось"
+      : item.kind === "note"
+        ? "Читать дальше"
+        : "Ещё немного магии";
 
-    const label = document.createElement("p");
-    label.className = "scene-label";
-    label.textContent = item.note
-      ? "сторона B · между строк"
-      : scenes[item.scene].label;
+    footer.textContent = remaining === 0
+      ? "последняя звезда уже на своём месте"
+      : footnotes[Math.floor((state.seen - 1) / 4) % footnotes.length];
 
-    const heading = document.createElement("h1");
-    heading.className = "sr-only";
-    heading.textContent = item.note
-      ? "Маленькая записка"
-      : "Несколько тёплых слов";
+    announcement.textContent = plainText(item.text);
+    updateSky();
 
-    const paragraph = document.createElement("p");
-    paragraph.className = "message";
-    paragraph.textContent = item.text;
-
-    const content = [heading, label, paragraph];
-
-    if (item.music) {
-      const mark = document.createElement("span");
-      mark.className = "music-mark";
-      mark.textContent = "маленькая отсылка к твоему плейлисту";
-      content.push(mark);
-    }
-
-    stage.replaceChildren(...content);
-    button.textContent = item.note ? "Читать дальше" : "Ещё немного магии";
-    announcement.textContent = item.text;
-
-    if (clicks === 1 || clicks % 4 === 0) {
-      footer.textContent =
-        footnotes[Math.floor(clicks / 4) % footnotes.length];
-    }
+    return item.kind;
   }
 
-  function animateScene() {
-    if (motion.matches) return;
+  function renderFinal() {
+    mode = "final";
+    document.body.dataset.mode = mode;
+    setScene("night");
+
+    stage.classList.remove("cover", "note");
+    stage.classList.add("final");
+    stage.style.minHeight = "";
+
+    const label = element("p", "label", "последний трек · послесвечение");
+    const title = element("h1", "final-title", "Вот и целое небо.");
+
+    const first = element(
+      "p", "final-copy",
+      "Пока ты читала, здесь появлялись звёзды. По одной на каждое послание — теперь они все на своём месте."
+    );
+
+    const second = element(
+      "p", "final-copy",
+      "На сегодня тёплые слова закончились. Но всё хорошее, что здесь было сказано, не заканчивается вместе с ними."
+    );
+
+    const wish = element(
+      "p", "final-copy",
+      "Пусть у тебя будет больше музыки, смелости и моментов, когда ты гордишься собой."
+    );
+
+    const hint = element(
+      "p", "final-copy muted",
+      "Если захочешь пройти этот маленький путь ещё раз — просто нажми кнопку ниже."
+    );
+
+    stage.replaceChildren(label, title, first, second, wish, hint);
+
+    brand.textContent = "маленькая вселенная · собрана тобой";
+    button.textContent = "Собрать небо заново";
+    footer.textContent = "у этой истории есть финал. у нежности — нет.";
+
+    announcement.textContent = [
+      title.textContent,
+      first.textContent,
+      second.textContent,
+      wish.textContent,
+      hint.textContent
+    ].join(" ");
+
+    updateSky();
+  }
+
+  function animateScene(kind) {
+    if (motion.matches || mode === "final") return;
 
     clearTimeout(effectTimer);
-    decor.classList.remove("play");
+    effects.classList.remove("play", "drum");
     buttonWrap.classList.remove("pulse");
 
-    void decor.offsetWidth;
+    void effects.offsetWidth;
 
-    decor.classList.add("play");
+    effects.classList.add("play");
+    if (kind === "drum") effects.classList.add("drum");
     buttonWrap.classList.add("pulse");
 
     effectTimer = setTimeout(() => {
-      decor.classList.remove("play");
+      effects.classList.remove("play", "drum");
       buttonWrap.classList.remove("pulse");
-    }, 1500);
+    }, 2200);
   }
 
-  function updateConstellation() {
-    const count = ((clicks - 1) % stars.length) + 1;
-
-    stars.forEach((star, index) => {
-      star.classList.toggle("visible", index < count);
-    });
-
-    links.forEach((link, index) => {
-      link.classList.toggle("visible", index < count - 1);
-    });
+  // На обложке предлагаем продолжить, если уже были прочитаны слова.
+  if (state.finished) {
+    button.textContent = "Вернуться к собранному небу";
+    footer.textContent = "твоё небо осталось здесь";
+  } else if (state.seen > 0) {
+    button.textContent = "Продолжить маленькую вселенную";
+    footer.textContent = "мы остановились там, где осталась твоя звезда";
   }
+
+  updateSky();
 
   const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -951,11 +1112,10 @@
     button.setAttribute("aria-disabled", "true");
 
     try {
-      const delay = motion.matches ? 0 : 350;
+      const delay = motion.matches ? 0 : 370;
+      const previousMode = mode;
 
-      // После входа сохраняем высоту области,
-      // чтобы кнопка меньше двигалась при смене фраз.
-      if (opened) {
+      if (mode === "reading") {
         stage.style.minHeight =
           `${stage.getBoundingClientRect().height}px`;
       }
@@ -963,19 +1123,45 @@
       stage.classList.add("hidden");
       await wait(delay);
 
-      clicks++;
-      const item = nextMessage();
+      let kind = "";
 
-      render(item);
-      opened = true;
-      updateConstellation();
+      if (mode === "cover") {
+        if (state.finished) {
+          renderFinal();
+        } else {
+          // Возвращение показывает последнюю открытую фразу,
+          // не пропуская её и не добавляя лишнюю звезду.
+          if (state.seen === 0) state.seen = 1;
+          kind = renderCard();
+        }
+      } else if (mode === "final") {
+        state = makeState();
+        state.seen = 1;
+        stage.style.minHeight = "";
+        kind = renderCard();
+      } else if (state.seen < state.deck.length) {
+        state.seen++;
+        kind = renderCard();
+      } else {
+        state.finished = true;
+        renderFinal();
+      }
 
-      // Фиксируем новую высоту, не обрезая длинный текст.
-      stage.style.minHeight =
+      save();
+
+      if (mode === "reading") {
+        stage.style.minHeight =
           `${stage.getBoundingClientRect().height}px`;
+      }
 
       stage.classList.remove("hidden");
-      animateScene();
+      animateScene(kind);
+
+      // После высокой финальной страницы начало нового
+      // прохода возвращается к верхней части сайта.
+      if (previousMode === "final") {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
 
       await wait(delay);
     } finally {
