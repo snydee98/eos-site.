@@ -3,21 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#faf6f0">
+
+  <meta name="theme-color" content="#faf6f0"
+        media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#191923"
+        media="(prefers-color-scheme: dark)">
+
   <meta name="description"
-        content="Маленькое место, где для тебя всегда найдётся несколько тёплых слов.">
-  <title>Шёпот Эос — немного света для тебя</title>
+        content="Маленький рассвет и несколько тёплых слов.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <title>Для Василисы Романовны</title>
 
   <style>
     :root {
-      color-scheme: light;
-      --paper: #faf6f0;
-      --ink: #514039;
-      --muted: #826d61;
-      --accent: #795343;
+      color-scheme: light dark;
+      --bg: #faf6f0;
+      --ink: #574039;
+      --muted: #82695d;
+      --accent: #805443;
+      --button-text: #fffaf5;
+      --line: #bd926c;
+      --glow: rgba(240, 182, 142, .28);
+      --glow-soft: rgba(236, 204, 192, .19);
+      --grain: rgba(87, 64, 57, .045);
+      --shadow: rgba(128, 84, 67, .16);
     }
 
-    * { box-sizing: border-box; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #191923;
+        --ink: #f1e4da;
+        --muted: #beaaa0;
+        --accent: #dfbaa1;
+        --button-text: #28202a;
+        --line: #c39c80;
+        --glow: rgba(174, 110, 105, .18);
+        --glow-soft: rgba(117, 112, 173, .13);
+        --grain: rgba(255, 240, 225, .035);
+        --shadow: rgba(0, 0, 0, .22);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
 
     body {
       margin: 0;
@@ -25,228 +60,514 @@
       min-height: 100svh;
       display: grid;
       place-items: center;
-      padding: 32px 20px;
-      background: var(--paper);
+      padding: 40px 24px;
+      background: var(--bg);
       color: var(--ink);
       font-family: Georgia, "Times New Roman", serif;
       -webkit-font-smoothing: antialiased;
       isolation: isolate;
     }
 
-    /* Рассветное свечение без картинок и внешних файлов. */
+    /* Мягкий свет рассвета. */
     body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          ellipse at 50% 24%,
+          var(--glow), transparent 56%
+        ),
+        radial-gradient(
+          ellipse at 85% 85%,
+          var(--glow-soft), transparent 48%
+        );
+    }
+
+    /* Едва заметная фактура бумаги. */
+    body::after {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      background:
-        radial-gradient(ellipse at 50% 28%,
-          #f2d2b96b, transparent 48%),
-        radial-gradient(ellipse at 80% 85%,
-          #efddd64d, transparent 44%);
+      opacity: .6;
+      background-image:
+        radial-gradient(var(--grain) .6px, transparent .8px),
+        radial-gradient(var(--grain) .5px, transparent .8px);
+      background-size: 5px 7px, 9px 11px;
+      background-position: 0 0, 3px 4px;
     }
 
     main {
-      width: min(100%, 650px);
+      width: min(100%, 660px);
       text-align: center;
+      animation: arrive 900ms ease both;
     }
 
     .sun {
       position: relative;
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 30px;
-      border: 1px solid #b58b63;
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 28px;
+      border: 1px solid var(--line);
       border-radius: 50%;
-      box-shadow: 0 0 45px #e8b78833;
+    }
+
+    .sun::before {
+      content: "";
+      position: absolute;
+      inset: -30px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle, var(--glow), transparent 70%
+      );
+      animation: breathe 7s ease-in-out infinite;
     }
 
     .sun::after {
       content: "";
       position: absolute;
       top: 50%;
-      left: -20px;
-      right: -20px;
+      left: -22px;
+      right: -22px;
       height: 1px;
-      background: #b58b6380;
+      opacity: .7;
+      background: var(--line);
+    }
+
+    .sun.flare::before {
+      animation: flare 1s ease-out;
+    }
+
+    .brand {
+      margin: 0;
+      color: var(--muted);
+      font: 500 11px/1.6 system-ui, sans-serif;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+
+    .stage {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 35px 0;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 320ms ease, transform 320ms ease;
+    }
+
+    .stage.hidden {
+      opacity: 0;
+      transform: translateY(7px);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font: 12px/1.7 system-ui, sans-serif;
+      letter-spacing: .06em;
     }
 
     h1 {
       margin: 0;
-      font-size: 13px;
-      font-family: system-ui, sans-serif;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-    }
-
-    .intro {
-      margin: 15px 0 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .message-space {
-      min-height: 280px;
-      display: grid;
-      align-items: center;
-      padding: 35px 0;
-    }
-
-    #message {
-      margin: 0;
-      font-size: clamp(25px, 4.6vw, 37px);
-      line-height: 1.45;
+      font-size: clamp(29px, 5.8vw, 43px);
       font-weight: normal;
+      line-height: 1.25;
+      text-wrap: balance;
+    }
+
+    .welcome-text {
+      max-width: 410px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+      text-wrap: pretty;
+    }
+
+    .compliment {
+      margin: 0;
+      font-size: clamp(26px, 5.3vw, 38px);
+      line-height: 1.45;
       text-wrap: pretty;
       overflow-wrap: break-word;
     }
 
     button {
+      min-height: 56px;
       max-width: 100%;
-      min-height: 54px;
-      padding: 17px 28px;
+      padding: 17px 27px;
       border: 1px solid var(--accent);
       border-radius: 999px;
       background: var(--accent);
-      color: #fffaf4;
-      font: 14px/1.4 system-ui, sans-serif;
+      color: var(--button-text);
+      font: 500 14px/1.45 system-ui, sans-serif;
       cursor: pointer;
       touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
       transition:
-        background 180ms ease,
         transform 180ms ease,
-        box-shadow 180ms ease;
+        box-shadow 180ms ease,
+        opacity 180ms ease;
     }
 
     @media (hover: hover) {
       button:hover {
-        background: #684535;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px #79534324;
+        box-shadow: 0 9px 28px var(--shadow);
       }
     }
 
-    button:active { transform: translateY(0); }
+    button:active {
+      transform: scale(.98);
+    }
 
     button:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 5px;
+      outline: 2px solid var(--accent);
+      outline-offset: 6px;
+    }
+
+    button[aria-disabled="true"] {
+      cursor: wait;
+      opacity: .8;
     }
 
     footer {
-      margin-top: 52px;
+      margin-top: 40px;
       color: var(--muted);
-      font: 12px/1.7 system-ui, sans-serif;
+      font: 12px/1.8 system-ui, sans-serif;
     }
 
-    @media (max-width: 420px) {
-      .message-space { min-height: 300px; }
-      footer { margin-top: 38px; }
+    footer span {
+      display: block;
+    }
+
+    .signature {
+      margin-top: 7px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: .55; transform: scale(.95); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    @keyframes flare {
+      0% { opacity: .6; transform: scale(1); }
+      35% { opacity: 1; transform: scale(1.5); }
+      100% { opacity: .6; transform: scale(1); }
+    }
+
+    @media (max-width: 380px) {
+      body { padding: 30px 20px; }
+      .stage { min-height: 340px; }
+      .sun { margin-bottom: 22px; }
+      footer { margin-top: 32px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      button { transition: none; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
-    <div class="sun" aria-hidden="true"></div>
+    <div class="sun" id="sun" aria-hidden="true"></div>
 
-    <h1>Шёпот Эос</h1>
-    <p class="intro">Маленький рассвет. Только для тебя.</p>
+    <p class="brand">Шёпот Эос</p>
 
-    <div class="message-space">
-      <p id="message" aria-live="polite" aria-atomic="true">
-        Здесь для тебя оставили<br>немного света.
+    <section class="stage" id="stage" aria-label="Тёплые слова">
+      <p class="eyebrow">Одной особенной девушке</p>
+
+      <h1>
+        Василиса Романовна,<br>
+        этот маленький рассвет — для тебя.
+      </h1>
+
+      <p class="welcome-text">
+        Здесь можно никуда не спешить.
+        Просто задержись на минуту —
+        для тебя есть несколько тёплых слов.
       </p>
-    </div>
+    </section>
 
-    <button id="give-compliment" type="button">
-      Несколько тёплых слов
+    <button id="button" type="button">
+      Открыть маленькое чудо
     </button>
 
-    <footer>Тебе не нужно заслуживать тёплые слова.</footer>
+    <p id="announcement" class="sr-only"
+       aria-live="polite" aria-atomic="true"></p>
+
+    <footer>
+      <span>Тебе не нужно заслуживать тёплые слова.</span>
+      <span class="signature">Этот уголок света — только для тебя.</span>
+    </footer>
+
+    <noscript>
+      <p>Чтобы открывать комплименты, включи JavaScript в браузере.</p>
+    </noscript>
   </main>
 
   <script>
     const compliments = [
-      "В тебе есть свет, которому не нужно разрешение, чтобы делать мир теплее.",
-      "Если бы у спокойствия был голос, в нём наверняка звучали бы твои интонации.",
-      "Ты — как окно, в котором горит свет, когда весь город уже уснул.",
-      "В твоём присутствии даже тишина кажется доброй.",
-      "Если бы утро умело писать письма, самые нежные оно адресовало бы тебе.",
-      "В тебе есть та редкая красота, которую хочется не рассматривать, а беречь.",
-      "Ты напоминаешь морю, зачем ему отражать солнце.",
-      "Рядом с тобой обыкновенные минуты становятся теми, что хочется запомнить.",
-      "В тебе столько настоящего, что миру рядом можно перестать притворяться.",
-      "Твоё обаяние — не вспышка. Это свет, к которому постепенно поворачиваются все цветы.",
-      "Если бы тебя можно было описать музыкой, после последней ноты никто не спешил бы нарушить тишину.",
-      "Есть люди, похожие на ответы. Ты — на ответ «да» после долгой зимы.",
-      "Твоя улыбка могла бы работать переводчиком между человеком и счастьем.",
-      "Ты — как строчка в книге, к которой возвращаются не потому, что забыли, а потому, что стало тепло.",
-      "В тебе есть смелость полевого цветка: расти к свету, не спрашивая, достаточно ли ты прекрасен.",
-      "Даже в самый пасмурный день в тебе остаётся собственное маленькое лето.",
-      "Тебе не нужно быть ярче других. У твоего света свой неповторимый оттенок.",
-      "Если бы звёзды собирали земные чудеса, в их коллекции нашлось бы место твоему смеху.",
+      "Василиса, в тебе есть свет, который не просит внимания, но делает всё вокруг немного прекраснее.",
+
+      "Если бы утро умело выбирать себе имя, сегодня оно захотело бы называться Василисой.",
+
+      "Ты — как строчка в любимой книге: её знаешь наизусть, но всё равно перечитываешь с улыбкой.",
+
+      "Твоя улыбка — маленькая весна, которой не нужно сверяться с календарём.",
+
+      "В тебе есть редкое очарование: рядом с тобой даже обычный день кажется неслучайным.",
+
+      "Если бы нежность можно было нарисовать, художнику всё равно пришлось бы искать вдохновение в тебе.",
+
+      "Василиса Романовна, у вашего очарования явно нет привычки предупреждать о своём появлении.",
+
+      "Ты похожа на первый тёплый ветер: цветы ещё не раскрылись, а мир уже предвкушает что-то хорошее.",
+
+      "Тебе не нужно быть ярче всех. У твоего света есть то, чего не повторит ни одна звезда.",
+
       "В тебе прекрасно не только сияние, но и глубина, из которой оно рождается.",
-      "Ты — как первый тёплый ветер: ещё ничего не расцвело, а надежда уже повсюду.",
-      "Твоя доброта похожа на корни: её не всегда видно, но благодаря ей что-то продолжает цвести.",
-      "Там, где появляется твой смех, у повседневности слегка золотятся края.",
-      "Ты не украшение чужой истории. Ты целое небо со своими созвездиями.",
-      "Миру идёт твоё присутствие."
+
+      "Если бы звёзды коллекционировали земные чудеса, твоя улыбка занимала бы отдельное созвездие.",
+
+      "Ты — та самая деталь, из-за которой простой пейзаж вдруг становится картиной.",
+
+      "Твоё имя звучит так, будто у сказки наконец появилась любимая героиня.",
+
+      "В тебе есть красота, после которой хочется замечать прекрасное внимательнее.",
+
+      "Кажется, рассвет немного подражает тебе: тоже приходит и делает всё мягче.",
+
+      "Ты не украшение чужой истории. Ты — целое небо со своими созвездиями.",
+
+      "Твой смех мог бы быть уважительной причиной, чтобы ненадолго остановить время.",
+
+      "Есть девушки, которым дарят стихи. А есть ты — из-за которой их начинают писать.",
+
+      "Василиса, тебе удивительно идёт быть собой. Ни одному образу не сравниться с оригиналом.",
+
+      "Если бы этот день был конвертом, самым тёплым письмом внутри была бы ты.",
+
+      "Ты — как музыка из открытого окна: всего мгновение, а мир уже кажется добрее.",
+
+      "У тебя есть собственная гравитация. Иначе почему мысли так легко возвращаются к тебе?",
+
+      "В твоей улыбке есть что-то от маяка: одно мгновение — и горизонт уже не кажется таким далёким.",
+
+      "Твоя красота не требует восклицательных знаков. Иногда от восхищения просто становится тихо.",
+
+      "Если бы Афродита вела дневник вдохновения, твоё имя наверняка оказалось бы на одной из страниц.",
+
+      "Эос каждое утро раскрашивает небо. Но тебе для очарования даже не нужны такие декорации.",
+
+      "Ты могла бы быть музой. Но быть собой у тебя получается гораздо интереснее.",
+
+      "Василиса Романовна, вы — убедительный аргумент в пользу того, что у вселенной хороший вкус.",
+
+      "Ты похожа на сад после дождя: в тебе столько жизни, что даже слова хочется выбирать бережнее.",
+
+      "Миру очень идёт твоё присутствие.",
+
+      "Некоторые мгновения хочется сохранить между страницами, как цветы. Твоя улыбка — одно из них.",
+
+      "В тебе есть та лёгкость, с которой солнечный блик превращает обычную стену в маленькое чудо.",
+
+      "Ты прекрасна не как что-то. Ты прекрасна так, что хочется придумывать новые сравнения.",
+
+      "Если бы у хорошего настроения был почерк, в нём наверняка узнавалось бы твоё имя.",
+
+      "Василиса, даже эти слова сейчас немного волнуются: им хочется оказаться достойными твоей улыбки.",
+
+      "Твоя нежность — не хрупкость. Это сила, которая умеет обходиться без шума.",
+
+      "Есть свет, от которого щурятся. А есть твой — к нему хочется повернуться.",
+
+      "Ты — как неожиданная любимая песня посреди обычного дня.",
+
+      "Если бы луна увидела, как тебе идёт мягкий свет, она бы задержалась над твоим окном чуть дольше.",
+
+      "Тебе не нужен идеальный день, чтобы быть прекрасной его частью.",
+
+      "Твоё очарование похоже на аромат цветущего сада: его не удержать в ладонях, но трудно забыть.",
+
+      "Ты из тех чудес, для которых слово «обыкновенная» просто не придумали.",
+
+      "Наверное, поэзия и появилась потому, что однажды обычных слов для такой девушки оказалось мало.",
+
+      "Если бы тёплый свет мог выбирать, где ему остаться, он выбрал бы твою улыбку.",
+
+      "Василиса, ты похожа на хорошую новость, которую хочется перечитать ещё раз.",
+
+      "Есть красота, которую замечают. Твою — уносят с собой в памяти.",
+
+      "Ты словно оставляешь на дне обычных минут немного золотой пыльцы.",
+
+      "У твоего имени сегодня собственная погода: ясно, нежно и с высокой вероятностью восхищения.",
+
+      "Твоя улыбка могла бы стать маленьким праздником без даты и повода.",
+
+      "Василиса Романовна, этот сайт маленький только потому, что восхищение пока не научились измерять пикселями."
     ];
 
-    const message = document.getElementById("message");
-    const button = document.getElementById("give-compliment");
+    const stage = document.getElementById("stage");
+    const button = document.getElementById("button");
+    const sun = document.getElementById("sun");
+    const announcement = document.getElementById("announcement");
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     );
 
+    const storageKey = "eos-vasilisa-compliments-v2";
+
     let remaining = [];
     let lastCompliment = "";
-    let animation;
+    let busy = false;
+    let flareTimer;
+
+    // Запоминаем просмотренные фразы только в этом браузере.
+    // Если хранилище недоступно, сайт всё равно работает.
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey));
+
+      if (
+        saved &&
+        Array.isArray(saved.remaining) &&
+        saved.remaining.every(item => compliments.includes(item)) &&
+        new Set(saved.remaining).size === saved.remaining.length &&
+        typeof saved.last === "string" &&
+        (saved.last === "" || compliments.includes(saved.last))
+      ) {
+        remaining = saved.remaining;
+        lastCompliment = saved.last;
+      }
+    } catch {
+      // Продолжаем без сохранённой истории.
+    }
+
+    function saveHistory() {
+      try {
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify({
+            remaining: remaining,
+            last: lastCompliment
+          })
+        );
+      } catch {
+        // Например, браузер запретил сохранение.
+      }
+    }
 
     function refill() {
       remaining = [...compliments];
 
-      // Перемешивание Фишера — Йетса.
       for (let i = remaining.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+        [remaining[i], remaining[j]] =
+          [remaining[j], remaining[i]];
       }
 
-      // Не повторяем последнюю фразу на границе двух циклов.
-      const lastIndex = remaining.length - 1;
-      if (remaining[lastIndex] === lastCompliment) {
-        [remaining[0], remaining[lastIndex]] =
-          [remaining[lastIndex], remaining[0]];
+      // Последняя фраза предыдущего круга
+      // не станет первой фразой следующего.
+      const end = remaining.length - 1;
+
+      if (remaining[end] === lastCompliment) {
+        [remaining[0], remaining[end]] =
+          [remaining[end], remaining[0]];
       }
     }
 
-    button.addEventListener("click", () => {
+    function nextCompliment() {
       if (remaining.length === 0) refill();
 
       lastCompliment = remaining.pop();
-      message.textContent = lastCompliment;
+      saveHistory();
 
-      if (animation) animation.cancel();
+      return lastCompliment;
+    }
 
-      if (!reducedMotion.matches && typeof message.animate === "function") {
-        animation = message.animate(
-          [
-            { opacity: 0, transform: "translateY(8px)" },
-            { opacity: 1, transform: "translateY(0)" }
-          ],
-          {
-            duration: 550,
-            easing: "cubic-bezier(0.22, 1, 0.36, 1)"
-          }
-        );
+    const wait = milliseconds => new Promise(
+      resolve => setTimeout(resolve, milliseconds)
+    );
+
+    button.addEventListener("click", async () => {
+      if (busy) return;
+
+      busy = true;
+      button.setAttribute("aria-disabled", "true");
+
+      try {
+        const duration = reducedMotion.matches ? 0 : 340;
+
+        stage.classList.add("hidden");
+        await wait(duration);
+
+        const text = nextCompliment();
+
+        const heading = document.createElement("h1");
+        heading.className = "eyebrow";
+        heading.textContent = "Василиса Романовна, это тебе";
+
+        const paragraph = document.createElement("p");
+        paragraph.className = "compliment";
+        paragraph.textContent = text;
+
+        stage.replaceChildren(heading, paragraph);
+
+        button.textContent = "Ещё немного тепла";
+        announcement.textContent = text;
+
+        stage.classList.remove("hidden");
+
+        clearTimeout(flareTimer);
+        sun.classList.remove("flare");
+
+        if (!reducedMotion.matches) {
+          // Перезапускаем короткое свечение при нажатии.
+          void sun.offsetWidth;
+          sun.classList.add("flare");
+
+          flareTimer = setTimeout(() => {
+            sun.classList.remove("flare");
+          }, 1000);
+        }
+
+        await wait(duration);
+      } finally {
+        stage.classList.remove("hidden");
+        button.removeAttribute("aria-disabled");
+        busy = false;
       }
     });
   </script>
