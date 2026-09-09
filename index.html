@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf6f0">
+  <meta name="description"
+        content="Маленькое место, где для тебя всегда найдётся несколько тёплых слов.">
+  <title>Шёпот Эос — немного света для тебя</title>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #faf6f0;
+      --ink: #514039;
+      --muted: #826d61;
+      --accent: #795343;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 32px 20px;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      -webkit-font-smoothing: antialiased;
+      isolation: isolate;
+    }
+
+    /* Рассветное свечение без картинок и внешних файлов. */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 50% 28%,
+          #f2d2b96b, transparent 48%),
+        radial-gradient(ellipse at 80% 85%,
+          #efddd64d, transparent 44%);
+    }
+
+    main {
+      width: min(100%, 650px);
+      text-align: center;
+    }
+
+    .sun {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 30px;
+      border: 1px solid #b58b63;
+      border-radius: 50%;
+      box-shadow: 0 0 45px #e8b78833;
+    }
+
+    .sun::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      right: -20px;
+      height: 1px;
+      background: #b58b6380;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 13px;
+      font-family: system-ui, sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      margin: 15px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .message-space {
+      min-height: 280px;
+      display: grid;
+      align-items: center;
+      padding: 35px 0;
+    }
+
+    #message {
+      margin: 0;
+      font-size: clamp(25px, 4.6vw, 37px);
+      line-height: 1.45;
+      font-weight: normal;
+      text-wrap: pretty;
+      overflow-wrap: break-word;
+    }
+
+    button {
+      max-width: 100%;
+      min-height: 54px;
+      padding: 17px 28px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf4;
+      font: 14px/1.4 system-ui, sans-serif;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition:
+        background 180ms ease,
+        transform 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    @media (hover: hover) {
+      button:hover {
+        background: #684535;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px #79534324;
+      }
+    }
+
+    button:active { transform: translateY(0); }
+
+    button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    footer {
+      margin-top: 52px;
+      color: var(--muted);
+      font: 12px/1.7 system-ui, sans-serif;
+    }
+
+    @media (max-width: 420px) {
+      .message-space { min-height: 300px; }
+      footer { margin-top: 38px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      button { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="sun" aria-hidden="true"></div>
+
+    <h1>Шёпот Эос</h1>
+    <p class="intro">Маленький рассвет. Только для тебя.</p>
+
+    <div class="message-space">
+      <p id="message" aria-live="polite" aria-atomic="true">
+        Здесь для тебя оставили<br>немного света.
+      </p>
+    </div>
+
+    <button id="give-compliment" type="button">
+      Несколько тёплых слов
+    </button>
+
+    <footer>Тебе не нужно заслуживать тёплые слова.</footer>
+  </main>
+
+  <script>
+    const compliments = [
+      "В тебе есть свет, которому не нужно разрешение, чтобы делать мир теплее.",
+      "Если бы у спокойствия был голос, в нём наверняка звучали бы твои интонации.",
+      "Ты — как окно, в котором горит свет, когда весь город уже уснул.",
+      "В твоём присутствии даже тишина кажется доброй.",
+      "Если бы утро умело писать письма, самые нежные оно адресовало бы тебе.",
+      "В тебе есть та редкая красота, которую хочется не рассматривать, а беречь.",
+      "Ты напоминаешь морю, зачем ему отражать солнце.",
+      "Рядом с тобой обыкновенные минуты становятся теми, что хочется запомнить.",
+      "В тебе столько настоящего, что миру рядом можно перестать притворяться.",
+      "Твоё обаяние — не вспышка. Это свет, к которому постепенно поворачиваются все цветы.",
+      "Если бы тебя можно было описать музыкой, после последней ноты никто не спешил бы нарушить тишину.",
+      "Есть люди, похожие на ответы. Ты — на ответ «да» после долгой зимы.",
+      "Твоя улыбка могла бы работать переводчиком между человеком и счастьем.",
+      "Ты — как строчка в книге, к которой возвращаются не потому, что забыли, а потому, что стало тепло.",
+      "В тебе есть смелость полевого цветка: расти к свету, не спрашивая, достаточно ли ты прекрасен.",
+      "Даже в самый пасмурный день в тебе остаётся собственное маленькое лето.",
+      "Тебе не нужно быть ярче других. У твоего света свой неповторимый оттенок.",
+      "Если бы звёзды собирали земные чудеса, в их коллекции нашлось бы место твоему смеху.",
+      "В тебе прекрасно не только сияние, но и глубина, из которой оно рождается.",
+      "Ты — как первый тёплый ветер: ещё ничего не расцвело, а надежда уже повсюду.",
+      "Твоя доброта похожа на корни: её не всегда видно, но благодаря ей что-то продолжает цвести.",
+      "Там, где появляется твой смех, у повседневности слегка золотятся края.",
+      "Ты не украшение чужой истории. Ты целое небо со своими созвездиями.",
+      "Миру идёт твоё присутствие."
+    ];
+
+    const message = document.getElementById("message");
+    const button = document.getElementById("give-compliment");
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    let remaining = [];
+    let lastCompliment = "";
+    let animation;
+
+    function refill() {
+      remaining = [...compliments];
+
+      // Перемешивание Фишера — Йетса.
+      for (let i = remaining.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+      }
+
+      // Не повторяем последнюю фразу на границе двух циклов.
+      const lastIndex = remaining.length - 1;
+      if (remaining[lastIndex] === lastCompliment) {
+        [remaining[0], remaining[lastIndex]] =
+          [remaining[lastIndex], remaining[0]];
+      }
+    }
+
+    button.addEventListener("click", () => {
+      if (remaining.length === 0) refill();
+
+      lastCompliment = remaining.pop();
+      message.textContent = lastCompliment;
+
+      if (animation) animation.cancel();
+
+      if (!reducedMotion.matches && typeof message.animate === "function") {
+        animation = message.animate(
+          [
+            { opacity: 0, transform: "translateY(8px)" },
+            { opacity: 1, transform: "translateY(0)" }
+          ],
+          {
+            duration: 550,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+          }
+        );
+      }
+    });
+  </script>
+</body>
+</html>
